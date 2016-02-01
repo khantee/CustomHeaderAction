@@ -6,10 +6,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLConnection;
-import java.net.URLEncoder;
-import java.util.LinkedHashMap;
-import java.util.Map;
+
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -18,7 +15,7 @@ public class TestCustomAction {
 
 	public static void main(String[] args) throws IOException, JSONException {
 		
-		String url="http://10.0.0.115:8080/wm/acl/rules/json";
+		String url="http://10.0.0.115:8080/wm/acl/rules/json";//ip-controller+acl
 		URL object=new URL(url);
 
 		HttpURLConnection con = (HttpURLConnection) object.openConnection();
@@ -29,7 +26,7 @@ public class TestCustomAction {
 		con.setRequestMethod("POST");
 		
 		
-		JSONObject rule = new JSONObject();
+		JSONObject rule = new JSONObject(); //created JSON Oblect
 		rule.put("src-ip","10.0.0.1/32");
 		rule.put("dst-ip", "10.0.0.2/32");
 		rule.put("action", "deny");
@@ -39,6 +36,7 @@ public class TestCustomAction {
 		wr.write(rule.toString());
 		wr.flush();
 		
+		//get Response
 		StringBuilder sb = new StringBuilder();  
 		int HttpResult = con.getResponseCode(); 
 		
